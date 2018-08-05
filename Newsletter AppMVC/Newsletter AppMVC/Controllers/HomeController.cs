@@ -12,8 +12,7 @@ namespace Newsletter_AppMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = Newsletter; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False";
-
+        
         public ActionResult Index()
         {
             return View();
@@ -41,25 +40,6 @@ namespace Newsletter_AppMVC.Controllers
 
                 }
                 return View("Success");
-            }
-        }
-
-        public ActionResult Admin()
-        {
-            //Best practice is to wrap Entity statements in using statements, so they close when done
-            using (NewsletterEntities db = new NewsletterEntities())
-            {
-                var signups = db.SignUps;
-                var signupVms = new List<SignUpVm>();
-                foreach (var signup in signups)
-                {
-                    var signupVm = new SignUpVm();
-                    signupVm.FirstName = signup.FirstName;
-                    signupVm.LastName = signup.LastName;
-                    signupVm.EmailAddress = signup.EmailAddress;
-                    signupVms.Add(signupVm);
-                }
-                return View(signupVms);
             }
         }
     }
