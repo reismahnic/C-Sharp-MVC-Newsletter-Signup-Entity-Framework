@@ -1,4 +1,5 @@
 ﻿using Newsletter_AppMVC.ViewModels;
+using Newsletter_AppMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Newsletter_AppMVC.Controllers
                 foreach (var signup in signups)
                 {
                     var signupVm = new SignUpVm();
+                    signupVm.Id = signup.Id;
                     signupVm.FirstName = signup.FirstName;
                     signupVm.LastName = signup.LastName;
                     signupVm.EmailAddress = signup.EmailAddress;
